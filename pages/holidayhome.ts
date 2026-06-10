@@ -1,4 +1,4 @@
-import { Page, Locator } from '@playwright/test';
+import { Page, Locator, expect } from '@playwright/test';
 
 export class HomePage {
 
@@ -11,16 +11,11 @@ export class HomePage {
 
     constructor(page: Page) {
         this.page = page;
-        this.destinationTextbox =
-            page.getByRole('textbox', { name: 'Where to?' });
-        this.suggestionDropdown =
-            page.locator('.tt-menu').first();
-        this.tripDurationButton =
-            page.getByRole('button', { name: 'Trip Duration' });
-        this.durationOption =
-            page.locator('.dropdown-item').nth(0);
-        this.searchButton =
-            page.getByRole('button', { name: 'Search >' });
+        this.destinationTextbox = page.getByRole('textbox', { name: 'Where to?' });
+        this.suggestionDropdown = page.locator('.tt-menu').first();
+        this.tripDurationButton = page.getByRole('button', { name: 'Trip Duration' });
+        this.durationOption = page.locator('.dropdown-item').nth(0);
+        this.searchButton = page.getByRole('button', { name: 'Search >' });
     }
 
     async navigateToHomePage() {
