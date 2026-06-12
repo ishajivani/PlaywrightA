@@ -28,9 +28,9 @@ export class HomePage {
         await this.page.keyboard.press('Enter');
     }
 
-    async selectTripDuration() {
+    async selectTripDuration(durationIndex: number = 0) {
         await this.tripDurationButton.click();
-        await this.durationOption.click();
+        await this.page.locator('.dropdown-item').nth(durationIndex).click();
     }
 
     async clickSearch() {
