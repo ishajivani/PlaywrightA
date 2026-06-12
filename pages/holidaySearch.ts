@@ -47,8 +47,8 @@ export class SearchResultsPage {
         }
     }
 
-    async sortByPriceLowToHigh() {
-        await this.sortDropdown.selectOption('priceLowHigh');
+    async sortByPriceLowToHigh(sortOption: string = 'priceLowHigh') {
+        await this.sortDropdown.selectOption(sortOption);
     }
 
     async openPackage() {
