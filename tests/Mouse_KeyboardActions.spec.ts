@@ -1,38 +1,19 @@
 import { test, expect } from '@playwright/test';
 
 test('Mouse Actions', async ({ page }) => {
-
     test.setTimeout(60000);
-
     await page.goto('https://www.amazon.in/');
-
     await page.locator('#nav-link-accountList').hover();
-
     await page.locator('#icp-nav-flyout').hover();
-
     await page.locator('#nav-link-amazonprime').hover();
-
-    // Reliable scrolling
-    await page.evaluate(() => {
-        window.scrollBy(0, 1000);
-    });
-
+    await page.evaluate(() => { window.scrollBy(0, 1000); });
     await page.waitForTimeout(1000);
-
-    await page.evaluate(() => {
-        window.scrollBy(0, -500);
-    });
-
+    await page.evaluate(() => { window.scrollBy(0, -500);});
     await page.locator('#nav-cart').hover();
-
     await page.locator('#nav-cart').click();
-
     await page.waitForLoadState('domcontentloaded');
-
     await page.goBack();
-
     await page.waitForLoadState('domcontentloaded');
-
     await page.locator('#nav-logo-sprites').hover();
 });
 test('Keyboard Actions', async ({ page }) => {
