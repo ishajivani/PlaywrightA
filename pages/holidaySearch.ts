@@ -51,9 +51,29 @@ export class SearchResultsPage {
         await this.sortDropdown.selectOption(sortOption);
     }
 
+    // async openPackage() {
+    //     await this.packageLink.click();
+    // }
+
     async openPackage() {
-        await this.packageLink.click();
-    }
+
+    await this.page.waitForLoadState('networkidle');
+
+    const packageLink = this.page
+        .getByRole('link', {
+            name: /Rishikesh/i
+        })
+        .first();
+
+    await packageLink.waitFor({
+        state: 'visible',
+        timeout: 20000
+    });
+
+    await packageLink.scrollIntoViewIfNeeded();
+
+    await packageLink.click();
+}
 
     async verifyPackageTabs() {
         await this.itineraryTab.click();

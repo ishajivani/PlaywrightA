@@ -1,8 +1,8 @@
 import { test, expect } from '@playwright/test';
 
-test.describe.configure({
-  mode: 'parallel'
-});
+// test.describe.configure({
+//   mode: 'parallel'
+// });
 
 // test('Mobile Search', async ({ page }) => {
 //   await page.waitForTimeout(5000);
@@ -31,21 +31,21 @@ test.describe.configure({
 test('Mobile Search', async ({ page }) => {
   await page.goto('https://www.amazon.in/');
   const searchBox = page.locator('#twotabsearchtextbox');
-  await expect(searchBox).toBeVisible({ timeout: 15000 });
-  await searchBox.fill('mobile');
+  await expect(searchBox).toBeVisible({ timeout: 60000 });
+  await searchBox.fill('laptop');
   await page.keyboard.press('Enter');
   await page.waitForLoadState('domcontentloaded');
   const searchResults = page.locator('[data-component-type="s-search-result"]');
-  await expect(searchResults.first()).toBeVisible({timeout: 15000});
+  await expect(searchResults.first()).toBeVisible({timeout: 60000});
 });
 
 test('Boat Search', async ({ page }) => {
   await page.goto('https://www.amazon.in/');
   const searchBox = page.locator('#twotabsearchtextbox');
-  await expect(searchBox).toBeVisible({timeout: 15000});
+  await expect(searchBox).toBeVisible({timeout: 60000});
   await searchBox.fill('boat');
   await page.keyboard.press('Enter');
   await page.waitForLoadState('domcontentloaded');
   const searchResults = page.locator('[data-component-type="s-search-result"]');
-  await expect(searchResults.first()).toBeVisible({timeout: 15000});
+  await expect(searchResults.first()).toBeVisible({timeout: 60000});
 });

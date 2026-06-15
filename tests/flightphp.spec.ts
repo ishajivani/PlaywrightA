@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test('test', async ({ page }) => {
-  await page.goto('https://phptravels.net/');
+await page.goto('https://phptravels.net/');
 await page.getByRole('button', { name: 'I Understand & Continue' }).click();
 await page.getByRole('tab', { name: 'flight_takeoff Flights' }).click();
 await page.getByRole('textbox', { name: 'Departure From' }).click();

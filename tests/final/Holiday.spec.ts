@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
-import { HomePage } from '../pages/holidayhome';
-import { SearchResultsPage } from '../pages/holidaySearch';
+import { HomePage } from '../../pages/holidayhome';
+import { SearchResultsPage } from '../../pages/holidaySearch';
 
 test('Search holiday package', async ({ page }) => {
     const homePage = new HomePage(page);

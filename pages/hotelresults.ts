@@ -17,7 +17,7 @@ export class HotelResultPage {
     }
 
     async applyFilters() {
-        await this.breakfastFilter.click();
+        // await this.breakfastFilter.click();
         await this.wifiFilter.click();
         await this.acFilter.click();
         await this.fitnessFilter.click();

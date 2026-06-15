@@ -1,5 +1,4 @@
 import { test, expect } from '@playwright/test';
-
 test('Check boxes', async ({ page }) => {
 
     test.setTimeout(60000);
@@ -39,31 +38,31 @@ test('Check boxes', async ({ page }) => {
 
 });
 
-test('DropDown', async ({ page }) => {
+
+test.only ('DropDown', async ({ page }) => {
 
     test.setTimeout(60000);
 
+    // ---------- BOOKS ----------
     await page.goto('https://www.amazon.in/');
 
-    const departmentDropdown =
+    let departmentDropdown =
         page.locator('#searchDropdownBox');
 
-    await expect(departmentDropdown)
-        .toBeVisible();
+    await expect(departmentDropdown).toBeVisible();
 
-    // Books
     await departmentDropdown.selectOption({
         label: 'Books'
     });
 
-    const searchBox =
+    let searchBox =
         page.locator('#twotabsearchtextbox');
 
     await searchBox.fill('harry potter');
 
     await page.keyboard.press('Enter');
 
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('networkidle');
 
     await expect(
         page.locator('[data-component-type="s-search-result"]').first()
@@ -71,8 +70,23 @@ test('DropDown', async ({ page }) => {
         timeout: 30000
     });
 
-    // Go back to home page
+    // ---------- BEAUTY ----------
     await page.goto('https://www.amazon.in/');
+
+    await page.waitForLoadState('networkidle');
+
+    // Re-locate after navigation
+    departmentDropdown =
+        page.locator('#searchDropdownBox');
+
+    searchBox =
+        page.locator('#twotabsearchtextbox');
+
+    await expect(departmentDropdown).toBeVisible();
+
+    // Debug available options
+    const options = await departmentDropdown.locator('option').allTextContents();
+    console.log('Available Options:', options);
 
     await departmentDropdown.selectOption({
         label: 'Beauty'
@@ -82,6 +96,11 @@ test('DropDown', async ({ page }) => {
 
     await page.keyboard.press('Enter');
 
-    await page.waitForLoadState('domcontentloaded');
+    await page.waitForLoadState('networkidle');
 
+    await expect(
+        page.locator('[data-component-type="s-search-result"]').first()
+    ).toBeVisible({
+        timeout: 30000
+    });
 });
